@@ -7,17 +7,37 @@
     <style>
       .container{
         margin-top:20px;
-        width:75%;
+        width: 75%;
       }
       .title{
-        margin-top:20px;
+        margin-top: 20px;
         margin-bottom: 20px;
+        font-weight: bold; /* Add this line to make the title bold */
+        font-size: 24px; /* Adjust the font size to your preference */
+
+
       }
       .single-news{
-        background-color:#ddd;
-        padding:30px;
-        margin-bottom:20px;
-        margin-top:20px;
+        background-color: #f8f9fa; /* Use a similar color to Chakra UI's gray.100 */
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+      }
+      .news-image {
+        width: 100%;
+        border-radius: 8px;
+      }
+      body {
+        font-family: 'Montserrat', sans-serif; /* Use Montserrat font for the body */
+        font-size: 15px; /* Adjust the font size to your preference */
+
+      }
+      h2 {
+        font-family: 'Libre Baskerville', serif; /* Use Libre Baskerville font for h2 elements */
+        font-size: 20px; /* Adjust the font size to your preference */
+        font-weight: bold; /* Add this line to make the title bold */
+
+
       }
     </style>
   </head>
@@ -27,18 +47,24 @@
       <hr>
       <div class="list-wrapper">
         {% for news in newslist['articles'] %}
-          <div class="row single-news">
-            <div class="col-4">
-              <img style="width:100%;" src="{{ news.image }}">
-            </div>
-            <div class="col-8">
-              <h2>{{ news.title }}</h2>
-              <small>{{ news.source.name }}</small>
-              {% if news.author %}
-                <small>| {{ news.author }}</small>
-              {% endif %}
-              <p>{{ news.description }}</p>
-              <a href="{{ news.url }}" class="btn btn-sm btn-primary" style="float:right;" target="_blank">Read More >></a>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="single-news">
+                <div class="row">
+                  <div class="col-md-4">
+                    <img class="news-image" src="{{ news.image }}">
+                  </div>
+                  <div class="col-md-8">
+                    <h2>{{ news.title }}</h2>
+                    <small>{{ news.source.name }}</small>
+                    {% if news.author %}
+                      <small>| {{ news.author }}</small>
+                    {% endif %}
+                    <p>{{ news.description }}</p>
+                    <a href="{{ news.url }}" class="btn btn-sm btn-primary" target="_blank">Read More >></a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         {% endfor %}
