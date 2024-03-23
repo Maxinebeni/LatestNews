@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+      .container{
+        margin-top:20px;
+        width:75%;
+      }
+      .title{
+        margin-top:20px;
+        margin-bottom: 20px;
+      }
+      .single-news{
+        background-color:#ddd;
+        padding:30px;
+        margin-bottom:20px;
+        margin-top:20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title text-center">Latest Health News</h1>
+      <hr>
+      <div class="list-wrapper">
+        {% for news in newslist['articles'] %}
+          <div class="row single-news">
+            <div class="col-4">
+              <img style="width:100%;" src="{{ news.image }}">
+            </div>
+            <div class="col-8">
+              <h2>{{ news.title }}</h2>
+              <small>{{ news.source.name }}</small>
+              {% if news.author %}
+                <small>| {{ news.author }}</small>
+              {% endif %}
+              <p>{{ news.description }}</p>
+              <a href="{{ news.url }}" class="btn btn-sm btn-primary" style="float:right;" target="_blank">Read More >></a>
+            </div>
+          </div>
+        {% endfor %}
+        {% if not newslist['articles'] %}
+          <div class="row single-news">
+            <div class="col-12 text-center">
+              <p>No news articles found.</p>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
